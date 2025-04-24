@@ -3,15 +3,17 @@ const express = require('express');
 const app = express();
 require('dotenv').config();
 
-const taskRoutes = require('./routes/taskRoutes');
-
 app.use(express.json());
 
 app.get('/', (req, res) => {
   res.send('Bienvenido a TaskFlow API');
 });
 
-// Agregar las rutas de tareas bajo /api/tasks
+const taskRoutes = require('./routes/taskRoutes');
 app.use('/api/tasks', taskRoutes);
+
+
+const authRoutes = require('./routes/authRoutes');
+app.use('/api/auth', authRoutes);
 
 module.exports = app;
